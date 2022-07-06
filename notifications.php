@@ -21,6 +21,10 @@
     if(mysqli_num_rows($query5) > 0){
         $result5 = mysqli_fetch_assoc($query5);
     }
+
+    $sql6 = "UPDATE notifications SET readNotification=1 WHERE readNotification=0";
+    mysqli_query($con, $sql6);
+    
 ?>
 
 
@@ -51,7 +55,7 @@
                     <a href="friends">Friends</a>
                 </li>
                 <li>
-                    <a class="active" href="notifications">Notifications</span></a>
+                    <a class="active notificationLink" href="notifications">Notifications</span></a>
                 </li>
                 <li>
                     <a href="messages.php?id=<?php echo $result5['friend_id']; ?>">Messages</a>

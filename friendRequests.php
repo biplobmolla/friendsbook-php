@@ -33,6 +33,26 @@
         <div class="max__width">
         <a class="profile__fullname" href="profile"><?php echo $result['fname'] . " " . $result['lname']; ?></a>
             <ul>
+            <script>
+                    $(document).ready(function(){
+                        function loadNotifications(){
+                            $.ajax({
+                            url: "fetchNotifications.php",
+                            type: "POST",
+                            success: function(data){
+                                if(data > 0){
+                                    var span = document.createElement("span");
+                                    span.innerHTML = data;
+                                    document.querySelector(".notificationLink").appendChild(span);
+                                }
+                            }
+                        });
+                        }
+                        loadNotifications();
+                    });
+
+
+                </script>
                 <li>
                     <a href="<?php echo $localhost; ?>">Home</a>
                 </li>
@@ -43,7 +63,7 @@
                     <a href="friends">Friends</a>
                 </li>
                 <li>
-                    <a href="notifications">Notifications</a>
+                    <a class="notificationLink" href="notifications">Notifications</a>
                 </li>
                 <li>
                     <a href="messages.php?id=<?php echo $result4['friend_id']; ?>">Messages</a>
